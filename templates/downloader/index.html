@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Downloader</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo/favicon.ico'%}%">
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-tall navbar-full" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand logo-cont">
+                    <a href="">
+                        <img src="{% static 'img\YTDownloader.png' %}" alt="YTDownloader" height="70px">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center">Download the video you want here:</h1>
+        <br>
+        <!--main form-->
+        <form id="video-form">
+            <div class="form-block row">
+                <div class="col-12 col-md-8">
+                    <input type="text" name="sf_url" id="sf_url" class="form-control" placeholder="Paste the URL here...." required autofocus>
+                </div>
+                <div class="col-12 col-md-4 mt-2 mt-md-0">
+                    <!-- Cambiar el tipo del botón a 'button' para que no envíe el formulario -->
+                    <button type="button" id="sf_submit" class="btn btn-primary w-100">Search</button>
+                </div>
+            </div>
+            
+            <!-- Video settings display -->
+            <div class="p-3 vid-display" id="video-info" >
+                <div class="vid-details row">
+                    <div class="col-12 col-md-6">
+                        <p><span id="video-title">Cargando...</span></p>
+                        <img id="video-thumbnail" src="{% static 'img/hqdefault.jpg' %}" alt="Thumbnail" style="width: 100%; max-width: 300px;">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p><strong>Selecciona el formato:</strong></p>
+                        <div id="video-options">
+                            <!-- Opciones de descarga -->
+                             <li></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--/main form-->
+    </div>
+
+    <!-- scripts zone -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/boxicons.js' %}"></script>
+    <script src="{% static 'js/youtube_API.js' %}"></script>
+</body>
+
+</html>
