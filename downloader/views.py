@@ -11,14 +11,11 @@ def get_media_info(request):
         if not media_url:
             return JsonResponse({'error': 'URL is required'}, status=400)
 
+        # Nueva configuración de yt-dlp sin FFmpeg
         ydl_opts = {
             'format': 'bestaudio/bestvideo',  # Mejor calidad de audio y video
-            'noplaylist': True,
-            'quiet': True,
-            'postprocessors': [{  # Postprocesador para convertir el audio y video
-                'key': 'FFmpegVideoConvertor',
-                'preferedformat': 'mp4',  # Formato final de salida (puedes cambiar a mkv o avi)
-            }],
+            'noplaylist': True,               # No descargar playlists
+            'quiet': True,                    # Modo silencioso
             'outtmpl': 'downloads/%(id)s.%(ext)s',  # Ruta de salida
         }
         
