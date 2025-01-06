@@ -15,7 +15,7 @@ def get_media_info(request):
         ydl_opts = {
             'format': 'bestaudio/bestvideo',  # Mejor calidad de audio y video
             'noplaylist': True,               # No descargar playlists
-            'quiet': True,                    # Modo silencioso
+            'quiet': True,                    
             'outtmpl': 'downloads/%(id)s.%(ext)s',  # Ruta de salida
         }
         

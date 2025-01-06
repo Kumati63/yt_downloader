@@ -25,7 +25,7 @@
     </nav>
 
     <div class="container">
-        <h1 class="text-center">Download the media you want here:</h1>
+        <h1 class="text-center">Download the media of the video you want here:</h1>
         <br>
         <!--main form-->
         <form id="media-form">
@@ -52,7 +52,7 @@
                             <!-- Opciones de descarga de video -->
                         </div>
                         <br>
-                        <p class="text-center"><strong>Choose the Audio quality:</strong></p>
+                        <p class="text-center"><strong>Download the Audio:</strong></p>
                         <div id="audio-options">
                             <p><strong>Audio Options:</strong></p>
                             <!-- Opciones de descarga de audio -->
@@ -63,10 +63,8 @@
 
             <br>
             <!-- Spinner de carga (inicialmente oculto) -->
-            <div id="loading-spinner" class="text-center" style="display: none;">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Cargando...</span>
-                </div>
+            <div id="loading-spinner" class="loading-spinner text-center" style="display: none;">
+                <div class="loader"></div>
             </div>
         </form>
         <!--/main form-->
