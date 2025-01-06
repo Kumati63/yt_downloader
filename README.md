@@ -42,17 +42,14 @@ Follow these steps to set up the project on your local machine:
   
        source venv/bin/activate
        
-5. Install yt-dlp:
-   
-     Allow download of videos and audio.
+5. Install requirements:
    
      ```bash
-     pip install yt-dlp
+     pip install -r requirements.txt         
    
 7. Run the development server
      ```bash
      python manage.py runserver
-
    
 ## Author
 
