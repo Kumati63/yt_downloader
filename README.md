@@ -1,10 +1,8 @@
 # YTDownloader
-
 YTDownloader is a responsive web application built with Django that allows users to download YouTube videos easily. The page provides an intuitive interface for searching videos and downloading them in various formats.
 
-# Problems
-
-Although it is working, it can only download the video without audio. I couldn't get it to download the video with the audio embedded together, nor could I download the audio separately.
+# Current Limitation
+At the moment, this tool can only download either the video without audio or the audio alone. My goal is to eventually enable the ability to download the video with the audio embedded together. I hope to implement this feature in the future.
 
 ## Features
 - **Video Downloads**: Allows users to download YouTube videos in different resolutions and formats.
