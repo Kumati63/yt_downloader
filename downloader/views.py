@@ -21,7 +21,7 @@ def get_media_info(request):
             }],
             'outtmpl': 'downloads/%(id)s.%(ext)s',  # Ruta de salida
         }
-
+        
         try:
             # Intentamos extraer la información del video
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -42,9 +42,8 @@ def get_media_info(request):
                 # Filtrar calidades de audio, excluyendo "storyboard", "medium", y "unknown quality"
                 filtered_audio_formats = [
                     {"quality": f.get('format_note', 'Unknown quality'), "url": f['url']}
-                    for f in formats if 'url' in f and ('acodec' in f or f.get('format_note') == 'audio only')
-                    # Excluir formatos con "storyboard", "medium" o "unknown quality"
-                    if f.get('format_note') not in ['storyboard', 'medium', 'low', 'ultralow', 'Unknown quality', 'Premium']
+                    for f in formats if 'url' in f and 'acodec' in f and f.get('format_note') == 'medium'
+                    # Excluir otros formatos con "storyboard", "low", etc.
                 ]
 
 

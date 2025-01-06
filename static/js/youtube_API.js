@@ -38,7 +38,7 @@ function fetchMediaDetails() {
                 // Crear los botones de descarga para video
                 data.video_formats.forEach(format => {
                     const option = document.createElement('button');
-                    option.textContent = `Download Video ${format.quality}`;
+                    option.textContent = `Download ${format.quality}`;
                     option.classList.add('btn', 'btn-primary', 'w-100', 'my-1');
                     option.onclick = function(event) {
                         event.preventDefault();
@@ -50,7 +50,7 @@ function fetchMediaDetails() {
                 // Crear los botones de descarga para audio
                 data.audio_formats.forEach(format => {
                     const option = document.createElement('button');
-                    option.textContent = `Download Audio ${format.quality}`;
+                    option.textContent = `Download Audio`;
                     option.classList.add('btn', 'btn-secondary', 'w-100', 'my-1');
                     option.onclick = function(event) {
                         event.preventDefault();
