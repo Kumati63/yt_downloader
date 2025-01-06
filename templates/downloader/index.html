@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YT Downloader</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'img/logo/favicon.ico'%}%">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/Style.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -25,44 +25,55 @@
     </nav>
 
     <div class="container">
-        <h1 class="text-center">Download the video you want here:</h1>
+        <h1 class="text-center">Download the media you want here:</h1>
         <br>
         <!--main form-->
-        <form id="video-form">
+        <form id="media-form">
             <div class="form-block row">
                 <div class="col-12 col-md-8">
                     <input type="text" name="sf_url" id="sf_url" class="form-control" placeholder="Paste the URL here...." required autofocus>
                 </div>
                 <div class="col-12 col-md-4 mt-2 mt-md-0">
-                    <!-- Cambiar el tipo del botón a 'button' para que no envíe el formulario -->
                     <button type="button" id="sf_submit" class="btn btn-primary w-100">Search</button>
                 </div>
             </div>
-            
-            <!-- Video settings display -->
-            <div class="p-3 vid-display" id="video-info" >
-                <div class="vid-details row">
+            <br>
+            <!-- Media settings display -->
+            <div class="p-3 media-display" id="media-info" style="display: none;">
+                <div class="media-details row">
                     <div class="col-12 col-md-6">
-                        <p><span id="video-title">Cargando...</span></p>
-                        <img id="video-thumbnail" src="{% static 'img/hqdefault.jpg' %}" alt="Thumbnail" style="width: 100%; max-width: 300px;">
+                        <p><strong><span id="media-title">Cargando...</span></strong></p>
+                        <img id="media-thumbnail" src="" alt="Thumbnail" style="width: 100%; max-width: 500px;">
                     </div>
                     <div class="col-12 col-md-6">
-                        <p><strong>Selecciona el formato:</strong></p>
+                        <p class="text-center"><strong>Choose the Video quality:</strong></p>
                         <div id="video-options">
-                            <!-- Opciones de descarga -->
-                             <li></li>
+                            <p><strong>Video Options:</strong></p>
+                            <!-- Opciones de descarga de video -->
+                        </div>
+                        <br>
+                        <p class="text-center"><strong>Choose the Audio quality:</strong></p>
+                        <div id="audio-options">
+                            <p><strong>Audio Options:</strong></p>
+                            <!-- Opciones de descarga de audio -->
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <br>
+            <!-- Spinner de carga (inicialmente oculto) -->
+            <div id="loading-spinner" class="text-center" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
                 </div>
             </div>
         </form>
         <!--/main form-->
     </div>
 
-    <!-- scripts zone -->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/boxicons.js' %}"></script>
     <script src="{% static 'js/youtube_API.js' %}"></script>
 </body>
-
 </html>

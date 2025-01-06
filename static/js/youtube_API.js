@@ -1,50 +1,71 @@
-// verify if the "Search" button was clicked
-document.getElementById('sf_submit').addEventListener('click', fetchVideoDetails);
+document.getElementById('sf_submit').addEventListener('click', fetchMediaDetails);
 
-// Function to fetch the details of the video searched
-function fetchVideoDetails() {
-    // Get the url of the video
+function fetchMediaDetails() {
     const url = document.getElementById('sf_url').value;
-    // Send the url to the function 'extractVideoId' to get the unique id of the video
-    const videoId = extractVideoId(url);
 
-    // If there is no unique id it does not enter
-    if (videoId) {
-
-        const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=AIzaSyB6h_fsk-mfiyHkDWmyVQoU-XKOhutLAl0&part=snippet,contentDetails`;
-
-        // fetch the video details
-        fetch(apiUrl)
-            // Give the response in a json format
-            .then(response => response.json())
-            .then(data => {
-                if (data.items.length > 0) {
-                    const videoData = data.items[0];
-                    const title = videoData.snippet.title;
-                    const duration = videoData.contentDetails.duration;
-                    const thumbnailUrl = videoData.snippet.thumbnails.high.url;
-
-                    document.getElementById('video-title').textContent = title;
-                    document.getElementById('video-thumbnail').src = thumbnailUrl;
-
-                    // Show details of the video
-                    document.getElementById('video-info').style.display = 'block';
-                } else {
-                    alert('Video not found.');
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching video details:', error);
-                alert('Error fetching the video details.');
-            });
-    } else {
+    if (!url) {
         alert('Please, put a valid URL.');
+        return;
     }
-}
 
-// Function to extract the unique id of the video
-function extractVideoId(url) {
-    const regex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)([a-zA-Z0-9_-]{11}))|(?:https?:\/\/youtu\.be\/([a-zA-Z0-9_-]{11}))$/;
-    const match = url.match(regex);
-    return match ? (match[1] || match[2]) : null;
+    // Mostrar el spinner de carga
+    document.getElementById('loading-spinner').style.display = 'block';
+    document.getElementById('media-info').style.display = 'none'; // Ocultar detalles mientras se carga
+
+    // La URL de tu API Django
+    const apiUrl = `/get_media_info/?url=${encodeURIComponent(url)}`;
+
+    // Solicitar información sobre el video y audio
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Ocultar el spinner una vez se recibe la respuesta
+            document.getElementById('loading-spinner').style.display = 'none';
+
+            if (data.error) {
+                alert(data.error);
+            } else {
+                // Mostrar el título y la miniatura
+                document.getElementById('media-title').textContent = data.title;
+                document.getElementById('media-thumbnail').src = data.thumbnail;
+
+                // Mostrar las opciones de descarga de video
+                const videoOptionsDiv = document.getElementById('video-options');
+                const audioOptionsDiv = document.getElementById('audio-options');
+                videoOptionsDiv.innerHTML = ''; // Limpiar las opciones anteriores
+                audioOptionsDiv.innerHTML = '';
+
+                // Crear los botones de descarga para video
+                data.video_formats.forEach(format => {
+                    const option = document.createElement('button');
+                    option.textContent = `Download Video ${format.quality}`;
+                    option.classList.add('btn', 'btn-primary', 'w-100', 'my-1');
+                    option.onclick = function(event) {
+                        event.preventDefault();
+                        window.open(format.url, '_blank');
+                    };
+                    videoOptionsDiv.appendChild(option);
+                });
+
+                // Crear los botones de descarga para audio
+                data.audio_formats.forEach(format => {
+                    const option = document.createElement('button');
+                    option.textContent = `Download Audio ${format.quality}`;
+                    option.classList.add('btn', 'btn-secondary', 'w-100', 'my-1');
+                    option.onclick = function(event) {
+                        event.preventDefault();
+                        window.open(format.url, '_blank');
+                    };
+                    audioOptionsDiv.appendChild(option);
+                });
+
+                // Mostrar la sección con los detalles del media
+                document.getElementById('media-info').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching media details:', error);
+            alert('Error fetching the media details.');
+            document.getElementById('loading-spinner').style.display = 'none';
+        });
 }

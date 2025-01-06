@@ -1,7 +1,7 @@
-from django.contrib import admin
 from django.urls import path
-from downloader import views
+from . import views
 
 urlpatterns = [
-    path('',views.index,name='index')
+    path('get_media_info/', views.get_media_info, name='get_media_info'),
+    path('', views.index, name='index'),
 ]
