@@ -50,7 +50,12 @@ Follow these steps to set up the project on your local machine:
 5. Install requirements:
    
      ```bash
-     pip install -r requirements.txt         
+     pip install -r requirements.txt
+     
+6. Update yt-dlp to ensure it doesn't break anything:
+     
+     ```bash
+     pip install --upgrade yt-dlp       
    
 7. Run the development server
      ```bash
