@@ -33,11 +33,15 @@ Follow these steps to set up the project on your local machine:
     ```bash
     cd yt_downloader
 
-3. Create a virtual environment (optional but recommended):
+3. Open VCode:
+    ```bash
+    code .
+
+4. Create a virtual environment (optional but recommended):
     ```bash
     python -m venv venv
    
-4. Activate the virtual environment
+5. Activate the virtual environment
    
       On Windows:
   
@@ -47,17 +51,17 @@ Follow these steps to set up the project on your local machine:
   
        source venv/bin/activate
        
-5. Install requirements:
+6. Install requirements:
    
      ```bash
      pip install -r requirements.txt
      
-6. Update yt-dlp to ensure it doesn't break anything:
+7. Update yt-dlp to ensure it doesn't break anything:
      
      ```bash
      pip install --upgrade yt-dlp       
    
-7. Run the development server
+8. Run the development server
      ```bash
      python manage.py runserver
      
