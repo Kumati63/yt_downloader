@@ -27,11 +27,11 @@ Follow these steps to set up the project on your local machine:
 1. Clone the repository:
    
     ```bash
-   git clone https://github.com/Kumati63/YTDownloader.git
+   git clone https://github.com/Kumati63/yt_downloader.git
    
 2. Navigate to the project folder:
     ```bash
-    cd YTDownloader
+    cd yt_downloader
 
 3. Create a virtual environment (optional but recommended):
     ```bash
