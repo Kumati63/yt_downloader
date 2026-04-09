@@ -33,7 +33,7 @@ Follow these steps to set up the project on your local machine:
     ```bash
     cd yt_downloader
 
-3. Open VCode:
+3. Open VSCode:
     ```bash
     code .
 
